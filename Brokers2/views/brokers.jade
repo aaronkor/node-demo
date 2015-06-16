@@ -1,0 +1,22 @@
+doctype html
+html
+	head
+		title Brokers
+	body
+		h1 Brokers 
+		ul#brokerList
+			each broker in brokers
+				li #{broker.name}
+		form(action='/brokers/add', method='post', )
+			input(type='text', id='txtNewBroker', name='newBroker')
+			button(type='submit') Add New Broker
+		
+		script(src='/js/socket.io.js')
+		script(type='text/javascript').
+			var socket = io();
+			var list = document.getElementById('brokerList');
+			socket.on('broker-added', function(broker) {
+				var item = document.createElement('li')
+				item.appendChild(document.createTextNode(broker.name))
+				list.appendChild(item);
+			});

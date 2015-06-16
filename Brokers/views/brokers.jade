@@ -1,0 +1,12 @@
+doctype html
+html
+	head
+		title Brokers
+	body
+		h1 Brokers 
+		ul
+			each broker in brokers
+				li #{broker.name}
+		form(action='brokers/add', method='post', )
+			input(type='text', id='txtNewBroker', name='newBroker')
+			button(type='submit') Add New Broker
